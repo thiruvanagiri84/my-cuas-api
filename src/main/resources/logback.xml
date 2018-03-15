@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--<pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n</pattern>-->
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %highlight(%-5level) %logger{100}.%M - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <property name="LOG_PATH" value="C:/Santosh/CPL Project Related/CUASAPI"/>
+    
+	<appender name="SAVE-TO-FILE" class="ch.qos.logback.core.FileAppender">
+	    <file>${LOG_PATH}/log2.log</file>
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	        <Pattern>
+	            %d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{100}.%M - %msg%n
+	        </Pattern>
+	    </encoder>
+	</appender>
+
+	<!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="SAVE-TO-FILE" />
+    </root>
+    
+    <!-- Custom logger: This is specific to only the class CuasApiApplication.java -->
+	<logger name="com.thomsonreuters.cpl.cuasapi.CuasApiApplication" additivity="false" level="DEBUG">
+	    <appender-ref ref="STDOUT" />
+	</logger>
+    
+</configuration>
